@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "jimp": "^0.2.28"
+  },
+  "name": "inkyphat-dashboard",
+  "version": "1.0.0",
+  "description": "A personal dashboard using the InkyPhat 3 color ePaper display.",
+  "main": "index.js",
+  "repository": "https://github.com/sc0ttr0berts0n/inkyphat-dashboard.git",
+  "author": "Scott Robertson",
+  "license": "MIT"
+}
