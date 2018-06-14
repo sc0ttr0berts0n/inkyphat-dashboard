@@ -1,15 +1,14 @@
 // jshint esversion: 6
 
 const Jimp = require('jimp');
-const chalk = require('chalk');
+const inkyphat = require('inkyphat').getInstance();
 
 Jimp.read(
     'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9f/9faea87fb8a60a831a97fda9dd5c6f6bd73a7fb6_full.jpg'
 ).then(function(image) {
     image.cover(256, 256);
     processColor(image, 60);
-    var file = 'test-graphic.' + image.getExtension();
-    image.write(file);
+    writeToFile(image, 'test-image');
 });
 
 function processColor(image, threshold = 64) {
@@ -32,4 +31,9 @@ function processColor(image, threshold = 64) {
             }
         }
     }
+}
+
+function writeToFile(image, name) {
+    let file = name + '.' + image.getExtension();
+    image.write(file);
 }
