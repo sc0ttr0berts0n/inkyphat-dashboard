@@ -41,6 +41,10 @@ bignumber.js@^2.1.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-2.4.0.tgz#838a992da9f9d737e0f4b2db0be62bb09dd0c5e8"
 
+bindings@~1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
+
 bmp-js@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/bmp-js/-/bmp-js-0.0.3.tgz#64113e9c7cf1202b376ed607bf30626ebe57b18a"
@@ -104,6 +108,13 @@ ecc-jsbn@~0.1.1:
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
   dependencies:
     jsbn "~0.1.0"
+
+epoll@~1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/epoll/-/epoll-1.0.2.tgz#d7d913e3fbdaf4315bd029ceecf9dc6487713b57"
+  dependencies:
+    bindings "~1.3.0"
+    nan "~2.8.0"
 
 es6-promise@^3.0.2:
   version "3.3.1"
@@ -199,6 +210,13 @@ http-signature@~1.2.0:
     assert-plus "^1.0.0"
     jsprim "^1.2.2"
     sshpk "^1.7.0"
+
+inkyphat@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/inkyphat/-/inkyphat-0.3.0.tgz#fc58b26594205cfe11da2c91ce8c16be57df7da5"
+  dependencies:
+    onoff "^1.1.9"
+    pi-spi "^1.0.2"
 
 ip-regex@^1.0.1:
   version "1.0.3"
@@ -308,9 +326,23 @@ mkdirp@0.5.1:
   dependencies:
     minimist "0.0.8"
 
+nan@^2.3.5:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
+
+nan@~2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
+
 oauth-sign@~0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
+
+onoff@^1.1.9:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/onoff/-/onoff-1.2.0.tgz#f642d4e040cd57f63cac5bcee226b573a5795d12"
+  dependencies:
+    epoll "~1.0.2"
 
 parse-bmfont-ascii@^1.0.3:
   version "1.0.6"
@@ -337,6 +369,12 @@ parse-headers@^2.0.0:
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+
+pi-spi@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pi-spi/-/pi-spi-1.0.2.tgz#10619ea2e7e1f8425b885abefb627c2739030dc6"
+  dependencies:
+    nan "^2.3.5"
 
 pixelmatch@^4.0.0:
   version "4.0.2"

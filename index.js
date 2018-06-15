@@ -3,17 +3,65 @@
 const Jimp = require('jimp');
 const inkyphat = require('inkyphat').getInstance();
 
+const PALETTE = {
+    WHITE: 0xffffffff,
+    BLACK: 0x000000ff,
+    RED: 0xff0000ff
+};
+
+console.log('Downloading Image...');
 Jimp.read(
-    'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9f/9faea87fb8a60a831a97fda9dd5c6f6bd73a7fb6_full.jpg'
+    'https://pbs.twimg.com/profile_images/579017615441584128/wf8CcD3f_400x400.jpeg'
 ).then(function(image) {
-    image.cover(256, 256);
-    processColor(image, 60);
-    writeToFile(image, 'test-image');
+    console.log('Image Downloaded');
+    image.contain(inkyphat.getWidth(), inkyphat.getHeight());
+    // processColor(image, 60);
+    processColor(image, 150);
+    // writeToFile(image, 'test-image');
+    outputToDisplay(image);
 });
 
+function outputToDisplay(img) {
+    inkyphat
+        .init()
+        .then(function() {
+            // Set Background to White
+            inkyphat.drawRect(
+                0,
+                0,
+                inkyphat.getWidth(),
+                inkyphat.getHeight(),
+                inkyphat.WHITE
+            );
+            for (let y = 0; y < img.bitmap.height; y++) {
+                for (let x = 0; x < img.bitmap.width; x++) {
+                    // get color of current cord
+                    color = img.getPixelColor(x, y);
+
+                    // mirror the y axis
+                    y = Math.abs(y - img.bitmap.height);
+                    if (color === PALETTE.RED) {
+                        inkyphat.setPixel(x, y, inkyphat.RED);
+                    } else if (color === PALETTE.BLACK) {
+                        inkyphat.setPixel(x, y, inkyphat.BLACK);
+                    } else if (color === PALETTE.WHITE) {
+                        inkyphat.setPixel(x, y, inkyphat.WHITE);
+                    } else {
+                        inkyphat.setPixel(x, y, inkyphat.WHITE);
+                    }
+                }
+            }
+            inkyphat.redraw();
+        })
+        .then(function() {
+            // Screen has refreshed.
+        });
+}
+
 function processColor(image, threshold = 64) {
+    console.log('Processing Image...');
+    image.background(0xffffffff);
     for (let y = 0; y < image.bitmap.height; y++) {
-        let line = '';
         for (let x = 0; x < image.bitmap.width; x++) {
             rgba = Jimp.intToRGBA(image.getPixelColor(x, y));
             // determine if should be black or white
@@ -21,16 +69,17 @@ function processColor(image, threshold = 64) {
             if (averageLightness <= threshold) {
                 // Handle Color Pixels
                 if (rgba.r > rgba.g && rgba.r > rgba.b) {
-                    image.setPixelColor(0xff0000ff, x, y);
+                    image.setPixelColor(PALETTE.RED, x, y);
                 } else {
-                    image.setPixelColor(0x000000ff, x, y);
+                    image.setPixelColor(PALETTE.BLACK, x, y);
                 }
             } else {
                 // Handle White Pixels
-                image.setPixelColor(0xffffffff, x, y);
+                image.setPixelColor(PALETTE.WHITE, x, y);
             }
         }
     }
+    console.log('Image Processed');
 }
 
 function writeToFile(image, name) {
