@@ -11,12 +11,16 @@ const PALETTE = {
 
 console.log('Downloading Image...');
 Jimp.read(
-    'https://pbs.twimg.com/profile_images/579017615441584128/wf8CcD3f_400x400.jpeg'
+    'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/9f/9faea87fb8a60a831a97fda9dd5c6f6bd73a7fb6_full.jpg'
 ).then(function(image) {
     console.log('Image Downloaded');
-    image.contain(inkyphat.getWidth(), inkyphat.getHeight());
+    image.cover(
+        inkyphat.getWidth(),
+        inkyphat.getHeight(),
+        Jimp.VERTICAL_ALIGN_TOP
+    );
     // processColor(image, 60);
-    processColor(image, 150);
+    processColor(image, 64);
     // writeToFile(image, 'test-image');
     outputToDisplay(image);
 });
